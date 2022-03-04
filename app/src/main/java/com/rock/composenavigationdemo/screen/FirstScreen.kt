@@ -12,17 +12,15 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 
 @Composable
-fun Home(navController: NavController){
+fun FirstScreen(navController: NavController){
     Scaffold {
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
+        Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(text = "Home")
-            Button(onClick = {
-                navController.navigate(Screen.SecondScreen.route)
-            }) {
+            Text(text = "FirstScreen")
+            //navController.navigate() 跳转到指定路由
+            //指定的路由必须在 NavGraph 中可以找到，不然会抛 IllegalArgumentException 异常
+            Button(onClick = { navController.navigate("SecondScreen") }) {
                 Text(text = "Go Second Screen")
             }
         }

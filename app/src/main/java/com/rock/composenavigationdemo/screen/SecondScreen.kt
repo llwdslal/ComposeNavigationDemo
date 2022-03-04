@@ -7,6 +7,7 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 
@@ -15,16 +16,16 @@ fun SecondScreen(navController: NavController){
     Scaffold(
         topBar = { TopAppBar(
             title = { Text(text = "Second")},
+            //navController.navigateUp() 返回上一级路由
             navigationIcon = { IconButton(onClick = { navController.navigateUp() }) {
                 Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "")
             }}
         ) }
     ) {
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Center
+        Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(text = "Home")
+            Text(text = "SecondScreen")
         }
     }
 }
