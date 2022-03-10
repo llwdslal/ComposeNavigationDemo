@@ -11,18 +11,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 
-private const val TAG = "FirstScreen"
 @Composable
-fun FirstScreen(navController: NavController){
+fun ThirdScreen(navController: NavController,arg1:String,arg2:Int){
     Scaffold {
         Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(text = "FirstScreen")
-            //navController.navigate() 跳转到指定路由
-            //指定的路由必须在 NavGraph 中可以找到，不然会抛 IllegalArgumentException 异常
-            Button(onClick = { navController.navigate(Screen.Second.route) }) {
-                Text(text = "Go Second Screen")
+            Text(text = "ThirdScreen")
+            Text(text = "$arg1")
+            Text(text = "arg2:$arg2 , type: ${arg2::class.java}")
+            Button(onClick = { navController.navigate(Screen.First.route) }) {
+                Text(text = "Go First Screen")
             }
         }
     }

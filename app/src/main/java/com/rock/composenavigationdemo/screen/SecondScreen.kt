@@ -26,6 +26,9 @@ fun SecondScreen(navController: NavController){
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(text = "SecondScreen")
+            Button(onClick = { navController.navigate(Screen.Third.createRoute("So easy",100)) }) {
+                Text(text = "Go Third Screen")
+            }
         }
     }
 }
