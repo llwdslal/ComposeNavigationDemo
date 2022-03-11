@@ -16,8 +16,14 @@
             android:theme="@style/Theme.ComposeNavigationDemo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <!-- 配置 DeepLink  -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="test" android:host="nav.test.thirdscreen" />
             </intent-filter>
         </activity>
     </application>
