@@ -1,12 +1,10 @@
 package com.rock.composenavigationdemo.screen
 
-import androidx.navigation.NamedNavArgument
-import androidx.navigation.NavBackStackEntry
-import androidx.navigation.NavType
-import androidx.navigation.navArgument
+import androidx.navigation.*
 
 sealed class Screen(val route:String){
     open val arguments:List<NamedNavArgument> = emptyList()
+    open val deepLinks:List<NavDeepLink> = emptyList()
 
     object First:Screen("first")
     object Second:Screen("second")
@@ -18,11 +16,18 @@ sealed class Screen(val route:String){
                 navArgument("arg1"){type = NavType.StringType},
                 navArgument(name = "arg2"){ defaultValue = 0 },
             )
+        override val deepLinks: List<NavDeepLink>
+            get() = listOf(
+                navDeepLink { uriPattern = "test://nav.test.thirdscreen/{arg1}?arg2={arg2}"  }
+            )
         //参数获取
         fun getArg1(backStackEntry: NavBackStackEntry):String = backStackEntry.arguments?.getString("arg1")!!
         fun getArg2(backStackEntry: NavBackStackEntry):Int = backStackEntry.arguments?.getInt("arg2")!!
         //根据参数创建 navigate() 时使用的路由
         fun createRoute(arg1:String,arg2:Int = 0):String = "third/$arg1?arg2=$arg2"
     }
+    object Fourth:Screen("fourth")
 }
+
+
 

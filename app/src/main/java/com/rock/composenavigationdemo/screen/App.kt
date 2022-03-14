@@ -19,14 +19,18 @@ fun App(){
             SecondScreen(navController)
         }
 
-        composable(route = Screen.Third.route, arguments = Screen.Third.arguments,
-            deepLinks = listOf(
-                navDeepLink { uriPattern = "test://nav.test.thirdscreen/{arg1}?arg2={arg2}"  }
-            )
+        composable(
+            route = Screen.Third.route,
+            arguments = Screen.Third.arguments,
+            deepLinks = Screen.Third.deepLinks
         ) {
             val arg1 = Screen.Third.getArg1(it)
             val arg2 = Screen.Third.getArg2(it)
             ThirdScreen(navController,arg1,arg2)
+        }
+
+        composable(Screen.Fourth.route){
+            FourthScreen(navController)
         }
     }
 }
