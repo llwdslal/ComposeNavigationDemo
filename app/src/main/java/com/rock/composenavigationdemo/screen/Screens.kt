@@ -1,8 +1,11 @@
 package com.rock.composenavigationdemo.screen
 
+import androidx.compose.runtime.Composable
 import androidx.navigation.*
+import androidx.navigation.compose.composable
 
-sealed class Screen(val route:String){
+
+open class Screen(val route:String){
     open val arguments:List<NamedNavArgument> = emptyList()
     open val deepLinks:List<NavDeepLink> = emptyList()
 
@@ -28,6 +31,15 @@ sealed class Screen(val route:String){
     }
     object Fourth:Screen("fourth")
 }
+
+fun NavGraphBuilder.composableScreen(screen: Screen, content: @Composable (NavBackStackEntry) -> Unit){
+    composable(route = screen.route,
+        arguments = screen.arguments,
+        deepLinks = screen.deepLinks,
+        content = content)
+}
+
+
 
 
 
